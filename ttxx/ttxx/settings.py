@@ -129,6 +129,26 @@ EMAIL_PORT = 25
 #发送邮件的邮箱
 EMAIL_HOST_USER = 'bjshanpu@163.com'   #主机:注册邮箱帐号
 #在邮箱中设置的客户端授权密码
-EMAIL_HOST_PASSWORD = 'a1234567'  #授权码
+EMAIL_HOST_PASSWORD = 'aaa123456'  #授权码
 #收件人看到的发件人
-EMAIL_FROM = '天天先鲜<itcast88@163.com>'  #提示信息:名称<发件人邮箱>
+EMAIL_FROM = '天天鲜鲜<bjshanpu@163.com>'  #提示信息:名称<发件人邮箱>
+
+# 缓存  #存到redis中
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache", #缓存引擎
+        "LOCATION": "redis://127.0.0.1:6379/5",  #缓存服务器
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",  #和数据库交互
+        }
+    }
+}
+
+
+# Session  #不配置,默认session存到mysql数据库中,现在存到rache中也是redis中
+# http://django-redis-chs.readthedocs.io/zh_CN/latest/#session-backend
+
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"  #引擎用cache,不再用mysql的innodb
+SESSION_CACHE_ALIAS = "default"  #指定为cache中"default"的配置
+
+LOGIN_URL='/user/login'
