@@ -117,19 +117,19 @@ STATICFILES_DIRS=[
 ]
 
 AUTH_USER_MODEL ='tt_user.User' ##迁移前需要设置,表示用tt_user的User做模型认证
-'''表示身法认证有两个用户类,需要设置AUTH_USER_MODEL ='tt_user.User'指定用户类
-INSTALLED_APPS = (
-    'django.contrib.admin',
-    'django.contrib.auth',
-'''''
+#  表示身法认证有两个用户类,需要设置AUTH_USER_MODEL ='tt_user.User'指定用户类
+#INSTALLED_APPS = (
+#    'django.contrib.admin',
+#    'django.contrib.auth',
+
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.163.com' #smtp收邮件;pop3发邮件
-EMAIL_PORT = 25
+EMAIL_HOST = 'smtp.163.com' #smtp发邮件;pop3收邮件
+EMAIL_PORT = 25  #特指(SMTP中)非ssl协议端口是25
 #发送邮件的邮箱
 EMAIL_HOST_USER = 'bjshanpu@163.com'   #主机:注册邮箱帐号
 #在邮箱中设置的客户端授权密码
-EMAIL_HOST_PASSWORD = 'aaa123456'  #授权码
+EMAIL_HOST_PASSWORD = 'aaa111'  #授权码
 #收件人看到的发件人
 EMAIL_FROM = '天天鲜鲜<bjshanpu@163.com>'  #提示信息:名称<发件人邮箱>
 
@@ -152,3 +152,19 @@ SESSION_ENGINE = "django.contrib.sessions.backends.cache"  #引擎用cache,不�
 SESSION_CACHE_ALIAS = "default"  #指定为cache中"default"的配置
 
 LOGIN_URL='/user/login'
+
+# 配置Django自定义的存储系统,指定保存文件的类,在这个类中可以编写上传文件到Fdfs
+DEFAULT_FILE_STORAGE = 'utils.storage.FdfsStorage' #名称随便起,再自己去创建
+
+#指定fdfs文件服务器读取文件的路径
+FDFS_SERVER='http://127.0.0.1:8888/'
+
+#指定FDFS配置文件
+FDFS_CLIENT=os.path.join(BASE_DIR,'utils/client.conf')
+
+#富文本编辑器
+TINYMCE_DEFAULT_CONFIG = {
+  'theme': 'advanced', # 丰富样式
+  'width': 900,
+  'height': 900,
+}

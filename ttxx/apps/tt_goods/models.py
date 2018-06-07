@@ -6,14 +6,14 @@ from tinymce.models import HTMLField  #tinymce富文本编辑器
 
 class GoodsCategory(BaseModel):
     """商品类别表"""
-    name = models.CharField(max_length=20, verbose_name="名称")
+    name = models.CharField(max_length=20, verbose_name="名称")  #verbose_name="名称"为文本框/其他文本名称
     logo = models.CharField(max_length=100, verbose_name="标识")
     image = models.ImageField(upload_to="category", verbose_name="图片")
 
     class Meta:
         db_table = "df_goods_category"
         verbose_name = "商品类别"  # admin站点使用
-        verbose_name_plural = verbose_name
+        verbose_name_plural = verbose_name  #verbose_name_plural表示复数,中文没有复数,所以赋值verbose_name
 
     def __str__(self):
         return self.name

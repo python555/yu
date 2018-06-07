@@ -22,6 +22,6 @@ urlpatterns = [
 	url('^order/', include('tt_order.urls')),
 	url('^user/', include('tt_user.urls')),
 	url('^', include('tt_goods.urls')),  #只有商品不用加前缀
-	
+	url(r'^tinymce/', include('tinymce.urls')),
 
 ]
