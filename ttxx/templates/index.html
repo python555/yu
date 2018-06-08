@@ -25,14 +25,14 @@
 	<div class="center_con clearfix">
 		<ul class="subnav fl">
             {% for category in category_list %}
-			<li><a href="#model0{{ forloop.counter }}" class="{{ category.logo }}">{{ category.name }}</a></li>
+			    <li><a href="#model0{{ forloop.counter }}" class="{{ category.logo }}">{{ category.name }}</a></li>
 
             {% endfor %}
 		</ul>
 		<div class="slide fl">
 			<ul class="slide_pics">
                 {% for banner in banner_list %}
-				<li><a href="/{{ banner.sku.id }}"><img src="{{ banner.image.url }}" alt="{{ banner.sku.name }}"></a></li>
+				    <li><a href="/{{ banner.sku.id }}"><img src="{{ banner.image.url }}" alt="{{ banner.sku.name }}"></a></li>
 
                 {% endfor %}
 			</ul>
@@ -42,7 +42,7 @@
 		</div>
 		<div class="adv fl">
             {% for adv in adv_list %}
-			<a href="{{ adv.url }}"><img src="{{ adv.image.url }}" alt="{{ adv.name }}"></a>
+			    <a href="{{ adv.url }}"><img src="{{ adv.image.url }}" alt="{{ adv.name }}"></a>
 
             {% endfor %}
 		</div>
@@ -54,7 +54,7 @@
 			<div class="subtitle fl">
 				<span>|</span>
                 {% for title in category.title_list %}
-				<a href="/{{ title.sku.id }}">{{ title.sku.name }}</a>
+				    <a href="/{{ title.sku.id }}">{{ title.sku.name }}</a>
 
                 {% endfor %}
 			</div>
@@ -65,11 +65,11 @@
 			<div class="goods_banner fl"><img src="{{ category.image.url }}"></div>
 			<ul class="goods_list fl">
                 {% for img in category.img_list %}
-				<li>
-					<h4><a href="/{{ img.sku.id }}">{{ img.sku.name }}</a></h4>
-					<a href="/{{ img.sku.id }}"><img src="{{ img.sku.default_img.url }}"></a>
-					<div class="prize">¥ {{ img.sku.price }}</div>
-				</li>
+                    <li>
+                        <h4><a href="/{{ img.sku.id }}">{{ img.sku.name }}</a></h4>
+                        <a href="/{{ img.sku.id }}"><img src="{{ img.sku.default_img.url }}"></a>
+                        <div class="prize">¥ {{ img.sku.price }}</div>
+                    </li>
                 {% endfor %}
 
 			</ul>

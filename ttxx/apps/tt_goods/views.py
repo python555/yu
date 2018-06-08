@@ -14,7 +14,7 @@ def test(request):
 
 def index(request):
 	#查询分类信息
-	category_list=GoodsCategory.objects.all()
+	category_list=GoodsCategory.objects.all()  #==模型类.管理器.all()
 	
 	#查询首页轮波图片
 	banner_list=IndexGoodsBanner.objects.all().order_by('index') #根据index字段排序,自定义排序字段
@@ -25,14 +25,17 @@ def index(request):
 	#查询分类的推荐商品信息
 	for category in category_list:
 		#查询当前分类的推荐文本商品
-		category.title_list=IndexCategoryGoodsBanner.objects.filter(category=category,display_type=0).order_by('index')[0:3]
+		title_list=IndexCategoryGoodsBanner.objects.filter(category=category,display_type=0).order_by('index')[0:3]
+		category.title_list=title_list
 		#查询当前分类的推荐图片商品
-		category.image_list = IndexCategoryGoodsBanner.objects.filter(category=category, display_type=1).order_by('index')[0:4]
-	
+		image_list = IndexCategoryGoodsBanner.objects.filter(category=category, display_type=1).order_by('index')[0:4]
+		category.image_list = image_list
 	context={
 		'title':'首页',
 		'category_list':category_list,
 		'banner_list':banner_list,
 		'adv_list':adv_list,
 	}
+	for c in category_list:
+		print(c.title_list,c.image_list)
 	return render(request,'index.html',context)

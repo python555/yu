@@ -109,9 +109,9 @@ class RegisterView(View): #类视图是内部封装的方法,继承View,好处:�
 		#使用celery发送激活邮件
 		# send_user_active.delay(user)  #不能一起传过去,因为不能将两个字符串同时序列化
 		
-		send_user_active.delay(uemail)   #delay()功能---会把参数和任务扔给celery
+		send_user_active.delay(uemail,user.id)   #delay()功能---会把参数和任务扔给celery
 	
-		send_user_active.delay(upwd)
+		
 
 
 		#给出响应
@@ -272,7 +272,7 @@ class SiteView(LoginRequiredViewMixin,View):
 		}
 		
 		#验证数据的完整性
-		if not all([receiver,province,city,district,addr,code,phone]):
+		if not all([receiver,province,city,district,addr123,code,phone]):
 			context['err_msg']='数据填写不完整'
 			return render(request,'user_center_site.html',context)
 		
